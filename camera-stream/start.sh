@@ -1,11 +1,10 @@
 #!/bin/bash
+
+echo "Loading camera module..."
 modprobe bcm2835-v4l2
+
+echo "Waiting for camera..."
 sleep 3
+
+echo "Starting Motion stream server..."
 motion -c /app/motion.conf
-```
-
-**Das Image ist nur ~50-70MB!** Download in 2-3 Minuten über WLAN.
-
-**Stream URL für DuetWiFi:**
-```
-http://<pi-ip>:8081/
