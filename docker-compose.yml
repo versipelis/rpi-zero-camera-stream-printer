@@ -10,9 +10,8 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - RESOLUTION=1640x1232
-      - FRAMERATE=15
-      - QUALITY=85
+      - RESOLUTION=1280x720
+      - FRAMERATE=10
     labels:
       io.balena.features.kernel-modules: '1'
       io.balena.features.firmware: '1'
