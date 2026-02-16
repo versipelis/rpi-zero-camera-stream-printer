@@ -90,3 +90,45 @@ def snapshot():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, threaded=True)
+```
+
+## 6. `.gitignore`
+```
+# Balena
+.balena/
+.resin-sync.yml
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+*.egg-info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+```
+
+Das sind alle wichtigen Dateien! Erstelle diese Struktur:
+```
+rpi-camera-stream/
+├── balena.yml
+├── docker-compose.yml
+├── .gitignore
+└── camera-stream/
+    ├── Dockerfile
+    ├── start.sh
+    └── stream.py
