@@ -1,28 +1,33 @@
 FROM balenalib/raspberry-pi2-debian:bullseye
 
-# Install system dependencies
+# Install dependencies
 RUN install_packages \
-    python3 \
-    python3-pip \
-    python3-picamera2 \
-    python3-libcamera \
-    python3-kms++ \
-    libcamera-apps \
+    build-essential \
+    cmake \
+    git \
+    libjpeg62-turbo-dev \
+    imagemagick \
     v4l-utils \
     && apt-get clean
 
-# Install Flask
-RUN pip3 install --no-cache-dir flask
+# Clone and build mjpg-streamer
+WORKDIR /tmp
+RUN git clone https://github.com/jacksonliam/mjpg-streamer.git && \
+    cd mjpg-streamer/mjpg-streamer-experimental && \
+    make && \
+    make install
 
 # Set working directory
 WORKDIR /app
 
-# Copy application files
-COPY start.sh /app/
-COPY stream.py /app/
+# Copy startup script
+COPY start.sh /app/start.sh
 
 # Make start script executable
 RUN chmod +x /app/start.sh
+
+# Expose port
+EXPOSE 8080
 
 # Start the application
 CMD ["/app/start.sh"]
