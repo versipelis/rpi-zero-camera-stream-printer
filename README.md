@@ -1,6 +1,6 @@
 # Raspberry Pi Camera Stream for DuetWiFi
 
-[![balena deploy button](https://www.balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/YOUR-USERNAME/rpi-camera-stream)
+[![balena deploy button](https://www.balena.io/deploy.svg)](https://dashboard.balena-cloud.com/deploy?repoUrl=https://github.com/versipelis/rpi-zero-camera-stream-printer)
 
 A Balena-deployable camera streaming service for Raspberry Pi Zero 2 W with CSI camera support (including night vision cameras). Designed to integrate with DuetWiFi 3D printer web interface.
 
