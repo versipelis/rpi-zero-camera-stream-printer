@@ -1,0 +1,4 @@
+version: 0.1.0
+name: rpi-camera-stream
+type: sw.application
+description: Raspberry Pi Zero 2 W Camera Streaming Service for DuetWiFi Integration

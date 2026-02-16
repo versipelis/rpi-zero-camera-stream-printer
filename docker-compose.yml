@@ -1,0 +1,19 @@
+version: '2.1'
+
+services:
+  camera-stream:
+    build: ./camera-stream
+    privileged: true
+    devices:
+      - "/dev/vchiq:/dev/vchiq"
+      - "/dev/video0:/dev/video0"
+    ports:
+      - "8080:8080"
+    environment:
+      - RESOLUTION=1640x1232
+      - FRAMERATE=15
+      - QUALITY=85
+    labels:
+      io.balena.features.kernel-modules: '1'
+      io.balena.features.firmware: '1'
+    restart: unless-stopped
