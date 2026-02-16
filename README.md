@@ -126,7 +126,7 @@ For best performance:
 ## File Structure
 
 ```
-rpi-camera-stream/
+rpi-zero-camera-stream-printer/
 ├── balena.yml              # Version and project metadata
 ├── docker-compose.yml      # Balena service configuration
 ├── camera-stream/
