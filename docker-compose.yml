@@ -2,11 +2,12 @@ version: '2.1'
 
 services:
   camera-stream:
-    image: ullaakut/cameradar:latest
+    build: ./camera-stream
     privileged: true
     devices:
       - "/dev/video0:/dev/video0"
     ports:
-      - "8554:8554"
-    command: rtsp-simple-server
+      - "8080:8080"
+    labels:
+      io.balena.features.kernel-modules: '1'
     restart: unless-stopped
