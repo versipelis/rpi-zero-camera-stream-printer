@@ -1,9 +1,11 @@
 FROM balenalib/raspberry-pi2-debian:bullseye
 
-RUN install_packages v4l-utils netcat-openbsd
+RUN install_packages \
+    libcamera-apps \
+    netcat-openbsd
 
 WORKDIR /app
-COPY start-minimal.sh /app/start.sh
+COPY start-libcamera.sh /app/start.sh
 RUN chmod +x /app/start.sh
 
 EXPOSE 8080
