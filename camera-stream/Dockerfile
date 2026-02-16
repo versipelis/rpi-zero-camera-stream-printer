@@ -1,16 +1,18 @@
 FROM balenalib/raspberry-pi2-debian:bullseye
 
-# Install dependencies
-RUN apt-get update && apt-get install -y \
+# Install system dependencies
+RUN install_packages \
     python3 \
     python3-pip \
+    python3-picamera2 \
+    python3-libcamera \
+    python3-kms++ \
+    libcamera-apps \
     v4l-utils \
-    libraspberrypi-bin \
-    libraspberrypi0 \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get clean
 
-# Install Python dependencies
-RUN pip3 install flask picamera2
+# Install Flask
+RUN pip3 install --no-cache-dir flask
 
 # Set working directory
 WORKDIR /app
