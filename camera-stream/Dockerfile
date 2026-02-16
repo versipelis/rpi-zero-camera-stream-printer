@@ -1,24 +1,28 @@
 FROM balenalib/raspberry-pi2-alpine:latest
 
-# Install minimal packages
-RUN apk add --no-cache \
-    bash \
-    v4l-utils \
-    wget
-
-# Download pre-built mjpg-streamer
-RUN wget -O /tmp/mjpg-streamer.tar.gz \
-    https://github.com/jacksonliam/mjpg-streamer/releases/download/v1.0/mjpg-streamer-rpi.tar.gz || \
-    (apk add git make gcc musl-dev libjpeg-turbo-dev cmake && \
-     cd /tmp && \
-     git clone --depth 1 https://github.com/jacksonliam/mjpg-streamer.git && \
-     cd mjpg-streamer/mjpg-streamer-experimental && \
-     make && \
-     make install)
+# Minimal install
+RUN apk add --no-cache bash v4l-utils motion
 
 WORKDIR /app
+COPY motion.conf /app/motion.conf
 COPY start.sh /app/start.sh
 RUN chmod +x /app/start.sh
 
-EXPOSE 8080
+EXPOSE 8080 8081
 CMD ["/app/start.sh"]
+```
+
+### `camera-stream/motion.conf`:
+```
+daemon off
+process_id_file /var/run/motion/motion.pid
+videodevice /dev/video0
+v4l2_palette 17
+width 1280
+height 720
+framerate 10
+stream_port 8081
+stream_localhost off
+stream_motion off
+webcontrol_port 8080
+webcontrol_localhost off
