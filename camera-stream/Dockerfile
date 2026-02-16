@@ -12,7 +12,7 @@ EXPOSE 8080 8081
 CMD ["/app/start.sh"]
 ```
 
-### `camera-stream/motion.conf`:
+## 2. `camera-stream/motion.conf` (NEU ERSTELLEN):
 ```
 daemon off
 process_id_file /var/run/motion/motion.pid
@@ -26,3 +26,5 @@ stream_localhost off
 stream_motion off
 webcontrol_port 8080
 webcontrol_localhost off
+output_pictures off
+ffmpeg_output_movies off
