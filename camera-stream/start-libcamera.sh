@@ -1,24 +1,26 @@
 #!/bin/bash
 
 echo "==================================="
-echo "Camera Debug & Stream"
+echo "Camera Stream with v4l2 + ffmpeg"
 echo "==================================="
 
 echo ""
-echo "Available video devices:"
-ls -la /dev/video*
-
-echo ""
-echo "Testing video devices with v4l2-ctl:"
-for dev in /dev/video*; do
-    echo "--- Device: $dev ---"
-    v4l2-ctl --device=$dev --list-formats-ext 2>/dev/null || echo "No formats available"
-done
-
-echo ""
-echo "Checking for cameras with libcamera:"
-libcamera-hello --list-cameras
-
-echo ""
+echo "Using /dev/video31 (JPEG support)"
 echo "Starting MJPEG stream on port 8080..."
-libcamera-vid -t 0 --width 640 --height 480 --codec mjpeg --inline -o - | nc -l -p 8080 -k
+echo "Stream URL: http://<device-ip>:8080/"
+echo ""
+
+# Stream mit ffmpeg - nutzt direkt /dev/video31
+while true; do
+    ffmpeg -f v4l2 \
+        -input_format mjpeg \
+        -video_size 640x480 \
+        -framerate 15 \
+        -i /dev/video31 \
+        -f mpjpeg \
+        -q:v 5 \
+        - | nc -l -p 8080 -q 1
+    
+    echo "Connection closed, restarting stream..."
+    sleep 1
+done
