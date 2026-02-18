@@ -1,8 +1,8 @@
 FROM balenalib/raspberry-pi2-debian:bullseye
 
-# Install all needed packages
+# Install ffmpeg and tools
 RUN install_packages \
-    libcamera-apps \
+    ffmpeg \
     v4l-utils \
     netcat-openbsd
 
