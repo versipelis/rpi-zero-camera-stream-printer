@@ -5,9 +5,11 @@ services:
     build: ./camera-stream
     privileged: true
     devices:
-      - "/dev/video0:/dev/video0"
+      - "/dev/vchiq:/dev/vchiq"
+      - "/dev/vcsm-cma:/dev/vcsm-cma"
     ports:
       - "8080:8080"
     labels:
       io.balena.features.kernel-modules: '1'
+      io.balena.features.firmware: '1'
     restart: unless-stopped
