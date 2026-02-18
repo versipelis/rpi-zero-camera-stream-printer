@@ -7,6 +7,8 @@ services:
     devices:
       - "/dev/vchiq:/dev/vchiq"
       - "/dev/vcsm-cma:/dev/vcsm-cma"
+      - "/dev/video0:/dev/video0"
+      - "/dev/media0:/dev/media0"
     ports:
       - "8080:8080"
     labels:
