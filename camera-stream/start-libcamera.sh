@@ -13,9 +13,9 @@ while true; do
         printf "Cache-Control: no-cache\r\n"
         printf "\r\n"
         ffmpeg -f v4l2 \
-            -input_format yuv420p \
+            -input_format yuyv422 \
             -video_size 640x480 \
-            -framerate 15 \
+            -framerate 10 \
             -i /dev/video0 \
             -vcodec mjpeg \
             -f mpjpeg \
@@ -24,5 +24,5 @@ while true; do
     ) | nc -l -p 8080 -q 1
 
     echo "Connection closed, restarting stream..."
-    sleep 1
+    sleep 0
 done
