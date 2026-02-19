@@ -3,7 +3,8 @@ FROM balenalib/raspberry-pi2-debian:bullseye
 RUN install_packages \
     ffmpeg \
     v4l-utils \
-    netcat-openbsd
+    netcat-openbsd \
+    python3
 
 WORKDIR /app
 COPY start-libcamera.sh /app/start.sh
