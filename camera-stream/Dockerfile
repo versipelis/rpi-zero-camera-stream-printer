@@ -4,8 +4,7 @@ RUN install_packages \
     ffmpeg \
     v4l-utils \
     netcat-openbsd \
-    libcamera-tools \
-    rpicam-apps
+    libcamera-apps
 
 WORKDIR /app
 COPY start-libcamera.sh /app/start.sh
