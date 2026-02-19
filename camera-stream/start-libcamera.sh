@@ -20,7 +20,7 @@ def handle_client(conn):
             '-video_size', '640x480',
             '-framerate', '5',
             '-i', '/dev/video0',
-            '-vcodec', 'mjpeg',
+            '-vcodec', 'mpjpeg',
             '-f', 'mjpeg',
             '-q:v', '10',
             '-'
