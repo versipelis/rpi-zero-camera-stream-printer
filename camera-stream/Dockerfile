@@ -1,15 +1,13 @@
 FROM balenalib/raspberry-pi2-debian:bullseye
 
-RUN install_packages curl gnupg
+RUN install_packages curl gnupg ca-certificates
 
-RUN curl -fsSL https://archive.raspberrypi.com/debian/raspberrypi.gpg.key | gpg --dearmor -o /usr/share/keyrings/raspberrypi-archive-keyring.gpg
-
-RUN echo "deb [signed-by=/usr/share/keyrings/raspberrypi-archive-keyring.gpg] https://archive.raspberrypi.com/debian/ bullseye main" > /etc/apt/sources.list.d/raspi.list
-
-RUN install_packages \
-    rpicam-apps \
-    python3 \
-    netcat-openbsd
+RUN curl -fsSL https://archive.raspberrypi.com/debian/raspberrypi.gpg.key | \
+    gpg --dearmor -o /usr/share/keyrings/raspberrypi-archive-keyring.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/raspberrypi-archive-keyring.gpg] https://archive.raspberrypi.com/debian/ bullseye main" \
+    > /etc/apt/sources.list.d/raspi.list && \
+    apt-get update && \
+    apt-get install -y rpicam-apps python3 netcat-openbsd
 
 WORKDIR /app
 COPY start-libcamera.sh /app/start.sh
