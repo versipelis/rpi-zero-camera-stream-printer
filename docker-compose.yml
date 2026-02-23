@@ -6,12 +6,10 @@ services:
     privileged: true
     devices:
       - "/dev/vchiq:/dev/vchiq"
-      - "/dev/vcsm-cma:/dev/vcsm-cma"
       - "/dev/video0:/dev/video0"
       - "/dev/media0:/dev/media0"
-      - "/dev/media1:/dev/media1"
-      - "/dev/media2:/dev/media2"
     volumes:
+      - "/proc/device-tree:/proc/device-tree:ro"
       - "/run/udev:/run/udev"
     ports:
       - "8080:8080"
